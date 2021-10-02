@@ -73,16 +73,10 @@ export const chatSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { addMessage } = chatSlice.actions;
 
-// export const incrementAsync = amount => dispatch => {
-//   setTimeout(() => {
-//     dispatch(incrementByAmount(amount));
-//   }, 1000);
-// };
-
-export const addBotMessage = (message) => dispatch => {
+// assync dispatch with redux-thunk
+export const addBotMessageWithThunk = (message) => dispatch => {
   const botMessage = {
     chatId: message.chatId,
     messageText: "I'm robot",
@@ -92,7 +86,5 @@ export const addBotMessage = (message) => dispatch => {
     dispatch(addMessage(botMessage));
   }, 1000);
 };
-
-
 
 export default chatSlice.reducer;
