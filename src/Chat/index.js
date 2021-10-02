@@ -1,4 +1,4 @@
-import React, { useEffect, useState, } from "react";
+// import React, { useEffect, useState, } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage, addBotMessageWithThunk } from "./chatSlice";
 import MessageList from "./MessageList";
@@ -33,7 +33,9 @@ const sendMessageWithThunk = (message) => (dispatch, getState) => {
   }
 };
 
-function Chat() {
+
+
+function ChatContainer() {
   const urlParams = useParams();
   const chatId = Number.parseInt(urlParams.id);
 
@@ -46,15 +48,20 @@ function Chat() {
   const onSendMessage = (messageText) => {
     dispatch(sendMessageWithThunk({ chatId, messageText, authorId: myId }));
   };
+  
+  return <Chat  classes={classes} messages={messages} onSendMessage={onSendMessage} />;
+}
 
+function Chat(props) {
+  
   return (
-    <div className={classes.chatWrapper}>
-      <div className={classes.componentWrapper}>
-        <MessageList messagesArray={messages} />
-        <MessageInput onSendMessage={onSendMessage} />
+    <div className={props.classes.chatWrapper}>
+      <div className={props.classes.componentWrapper}>
+        <MessageList messagesArray={props.messages} />
+        <MessageInput onSendMessage={props.onSendMessage} />
       </div>
     </div>
   );
 }
 
-export default Chat;
+export default ChatContainer;
