@@ -1,6 +1,6 @@
 import React, { useEffect, useState, } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessage } from "./chatSlice";
+import { addMessage, addBotMessage } from "./chatSlice";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,12 +29,13 @@ const sendMessageWithThunk = (message) => (dispatch, getState) => {
   const myId = chat.myId;
   dispatch(addMessage(message));
   if (message.authorId === myId) {
-    const botMessage = {
-      chatId: message.chatId,
-      messageText: "I'm robot",
-      authorId: message.chatId,
-    };
-    setTimeout(() => dispatch(addMessage(botMessage)), 1500);
+    dispatch(addBotMessage(message));
+    // const botMessage = {
+    //   chatId: message.chatId,
+    //   messageText: "I'm robot",
+    //   authorId: message.chatId,
+    // };
+    // setTimeout(() => dispatch(addMessage(botMessage)), 1500);
   }
 };
 
