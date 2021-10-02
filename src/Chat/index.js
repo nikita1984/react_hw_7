@@ -1,8 +1,6 @@
-// import React, { useEffect, useState, } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage, addBotMessageWithThunk } from "./chatSlice";
-import MessageList from "./MessageList";
-import MessageInput from "./MessageInput";
+import Chat from "./Chat";
 import { makeStyles } from "@material-ui/core/styles";
 import { useParams } from "react-router-dom";
 
@@ -33,8 +31,6 @@ const sendMessageWithThunk = (message) => (dispatch, getState) => {
   }
 };
 
-
-
 function ChatContainer() {
   const urlParams = useParams();
   const chatId = Number.parseInt(urlParams.id);
@@ -50,18 +46,6 @@ function ChatContainer() {
   };
   
   return <Chat  classes={classes} messages={messages} onSendMessage={onSendMessage} />;
-}
-
-function Chat(props) {
-  
-  return (
-    <div className={props.classes.chatWrapper}>
-      <div className={props.classes.componentWrapper}>
-        <MessageList messagesArray={props.messages} />
-        <MessageInput onSendMessage={props.onSendMessage} />
-      </div>
-    </div>
-  );
 }
 
 export default ChatContainer;
