@@ -1,10 +1,10 @@
 import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 import { addMessage } from "./Chat/chatSlice";
-import { useSelector } from "react-redux";
 
 function* addBotMessageWithSaga(action) {
+    const myId = 1;
     yield put(addMessage(action.payload));
-    if (action.payload.authorId === 1) {
+    if (action.payload.authorId === myId) {
       const botMessage = {
         chatId: action.payload.chatId,
         messageText: "I'm robot",
