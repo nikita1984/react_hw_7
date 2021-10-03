@@ -1,0 +1,1 @@
+export const getMyId = state => state.chat.myId;
