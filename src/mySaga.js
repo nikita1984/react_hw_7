@@ -1,8 +1,9 @@
-import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
+import { call, put, takeEvery, takeLatest, delay, select } from 'redux-saga/effects';
 import { addMessage } from "./Chat/chatSlice";
+import { getMyId } from './selectors'
 
 function* addBotMessageWithSaga(action) {
-    const myId = 1;
+    const myId = yield select(getMyId);
     yield put(addMessage(action.payload));
     if (action.payload.authorId === myId) {
       const botMessage = {

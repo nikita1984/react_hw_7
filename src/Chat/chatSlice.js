@@ -77,6 +77,7 @@ export const chatSlice = createSlice({
 
 export const { addMessage } = chatSlice.actions;
 
+/*
 // assync dispatch with redux-thunk
 export const addBotMessageWithThunk = (message) => dispatch => {
   const botMessage = {
@@ -88,7 +89,7 @@ export const addBotMessageWithThunk = (message) => dispatch => {
     dispatch(addMessage(botMessage));
   }, 1000);
 };
-
+*/
 
 
 export default chatSlice.reducer;
