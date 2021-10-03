@@ -4,6 +4,12 @@ import chatReducer from "./Chat/chatSlice";
 import thunkMiddleware from "redux-thunk";
 import { persistReducer } from "redux-persist";
 
+
+import createSagaMiddleware from 'redux-saga'
+import mySaga from "./mySaga";
+
+const sagaMiddleware = createSagaMiddleware();
+
 const persistConfig = {
   key: "root",
   storage,
@@ -15,5 +21,7 @@ const persistedReducer = persistReducer(persistConfig, reducers)
 
 export default configureStore({
   reducer: persistedReducer,
-  middleware: [thunkMiddleware],
+  middleware: [ sagaMiddleware, thunkMiddleware  ],
 });
+
+sagaMiddleware.run(mySaga);

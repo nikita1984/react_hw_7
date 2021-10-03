@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import moment from "moment";
 
+
+
 export const chatSlice = createSlice({
   name: "chat",
   initialState: {
@@ -86,5 +88,7 @@ export const addBotMessageWithThunk = (message) => dispatch => {
     dispatch(addMessage(botMessage));
   }, 1000);
 };
+
+
 
 export default chatSlice.reducer;

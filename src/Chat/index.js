@@ -22,14 +22,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const sendMessageWithThunk = (message) => (dispatch, getState) => {
-  const { chat } = getState();
-  const myId = chat.myId;
-  dispatch(addMessage(message));
-  if (message.authorId === myId) {
-    dispatch(addBotMessageWithThunk(message));
-  }
-};
+// const sendMessageWithThunk = (message) => (dispatch, getState) => {
+//   const { chat } = getState();
+//   const myId = chat.myId;
+//   dispatch(addMessage(message));
+//   if (message.authorId === myId) {
+//     dispatch(addBotMessageWithThunk(message));
+//   }
+// };
 
 function ChatContainer() {
   const urlParams = useParams();
@@ -42,7 +42,8 @@ function ChatContainer() {
   const classes = useStyles();
 
   const onSendMessage = (messageText) => {
-    dispatch(sendMessageWithThunk({ chatId, messageText, authorId: myId }));
+    // dispatch(addMessage({ chatId, messageText, authorId: myId }));
+    dispatch({type: 'USER_FETCH_REQUESTED', payload: { chatId, messageText, authorId: myId }})
   };
   
   return <Chat  classes={classes} messages={messages} onSendMessage={onSendMessage} />;
